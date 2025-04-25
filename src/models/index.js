@@ -1,5 +1,5 @@
 'use strict';
-
+// Copy all of this code from sequelize cli of github src/assets/models/index.js
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
