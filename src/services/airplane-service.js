@@ -29,6 +29,16 @@ async function createAirplane(data) {
     }
 }
 
+async function getAirplanes() {
+    try {
+        const airplanes = await airplaneRepository.getAll();
+        return airplanes;
+    } catch (error) {
+        throw new AppError('Cannot create a new Airplane object', StatusCodes.BAD_REQUEST);
+    }
+}
+
 module.exports = {
-    createAirplane
+    createAirplane,
+    getAirplanes
 }
