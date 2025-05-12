@@ -1,15 +1,15 @@
 const { StatusCodes } = require('http-status-codes');
 
-const { AirplaneRepository } = require('../repositories');
+const { AirportRepository } = require('../repositories');
 const AppError = require('../utils/errors/app-error');
 
-const airplaneRepository = new AirplaneRepository();
+const airportRepository = new AirportRepository();
 
-async function createAirplane(data) { 
+async function createAirport(data) { 
     try {
         console.log('Inside service');
-        const airplane = await airplaneRepository.create(data);
-        return airplane;
+        const airport = await airportRepository.create(data);
+        return airport;
     } catch (error) {
         // console.log(error);
         // if(error.name == 'TypeError')
@@ -26,46 +26,46 @@ async function createAirplane(data) {
             throw new AppError(explanation, StatusCodes.BAD_REQUEST);
         }
         // throw error;
-        throw new AppError('Cannot create a new Airplane object', StatusCodes.INTERNAL_SERVER_ERROR);
+        throw new AppError('Cannot create a new Airport object', StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
 
-async function getAirplanes() {
+async function getAirports() {
     try {
-        const airplanes = await airplaneRepository.getAll();
-        return airplanes;
+        const airports = await airportRepository.getAll();
+        return airports;
     } catch (error) {
-        throw new AppError('Cannot create a new Airplane object', StatusCodes.BAD_REQUEST);
+        throw new AppError('Cannot create a new Airport object', StatusCodes.BAD_REQUEST);
     }
 }
 
-async function getAirplane(id) {
+async function getAirport(id) {
     try {
-        const airplane = await airplaneRepository.get(id);
+        const airport = await airportRepository.get(id);
         return airplane;
     } catch (error) {
         if(error.statusCode == StatusCodes.NOT_FOUND) {
             throw new AppError('The airplane you requested is not present', error.statusCode);
         }
-        throw new AppError('Cannot create a new Airplane object', StatusCodes.BAD_REQUEST);
+        throw new AppError('Cannot create a new Airport object', StatusCodes.BAD_REQUEST);
     }
 }
 
-async function destroyAirplane(id) {
+async function destroyAirport(id) {
     try {
-        const response = await airplaneRepository.destroy(id);
+        const response = await airportRepository.destroy(id);
         return response;
     } catch (error) {
         if(error.statusCode == StatusCodes.NOT_FOUND){
-            throw new AppError("The airplane you requested to delete is not present", error.statusCode);
+            throw new AppError("The airport you requested to delete is not present", error.statusCode);
         }
-        throw new AppError('Cannot create a new Airplane object', StatusCodes.BAD_REQUEST);
+        throw new AppError('Cannot create a new Airport object', StatusCodes.BAD_REQUEST);
     }
 }
 
 module.exports = {
-    createAirplane,
-    getAirplanes,
-    getAirplane,
-    destroyAirplane
+    createAirport,
+    getAirports,
+    getAirport,
+    destroyAirport
 }
