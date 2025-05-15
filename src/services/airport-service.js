@@ -42,7 +42,7 @@ async function getAirports() {
 async function getAirport(id) {
     try {
         const airport = await airportRepository.get(id);
-        return airplane;
+        return airport;
     } catch (error) {
         if(error.statusCode == StatusCodes.NOT_FOUND) {
             throw new AppError('The airplane you requested is not present', error.statusCode);
