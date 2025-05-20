@@ -35,7 +35,7 @@ async function getAirports() {
         const airports = await airportRepository.getAll();
         return airports;
     } catch (error) {
-        throw new AppError('Cannot create a new Airport object', StatusCodes.BAD_REQUEST);
+        throw new AppError('Cannot fetch data of all the airports', StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
 
@@ -47,7 +47,7 @@ async function getAirport(id) {
         if(error.statusCode == StatusCodes.NOT_FOUND) {
             throw new AppError('The airplane you requested is not present', error.statusCode);
         }
-        throw new AppError('Cannot create a new Airport object', StatusCodes.BAD_REQUEST);
+        throw new AppError('Cannot create a new Airport object', StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
 
